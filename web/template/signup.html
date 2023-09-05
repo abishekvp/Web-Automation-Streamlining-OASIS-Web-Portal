@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block sign %}
+    <section class="row justify-content-center signup">
+        <form method="post" class="col-3 align-middle" id="signup">
+            {% csrf_token %}
+            <h2>Sign<span>Up</span></h2>
+            <div class="form-group">
+                <input type="text" class="form-control" name="su-username" id="su-username" placeholder="Username" required>
+                <p class="alert_message" id="username_validate"></p>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="su-email" id="su-email" placeholder="Email" required>
+                <p class="alert_message" id="email_validate"></p>
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control" name="su-contact" id="su-contact" placeholder="Contact" required>
+                <p></p>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="su-password" id="su-password" placeholder="Password" required>
+                <p class="alert_message" id="password_validate"></p>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="su-re_password" id="su-re_password" placeholder="Confirm Password" required>
+                <p class="alert_message" id="re_password_alert"></p>
+            </div>
+            <input type="submit" onclick="signup()" class="btn btn-primary" value="Register">
+            <p>New user? then <a href="signin">SignIn</a></p>
+        </form>
+    </section>
+
+    <script>
+
+        document.getElementById("su-email").addEventListener("input", function(e){
+            e.preventDefault();
+        
+            $.ajax({
+                type:'POST',
+                url:'/email',
+                data:{
+                    email:$('#su-email').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function(data){
+                    document.getElementById('email_validate').innerHTML = data;
+                }
+            });
+        });
+
+        document.getElementById("su-username").addEventListener("input", function(e){
+            e.preventDefault();
+        
+            $.ajax({
+                type:'POST',
+                url:'/username',
+                data:{
+                    name:$('#su-username').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function(data){ 
+                    document.getElementById('username_validate').innerHTML = data;
+                }
+            });
+        });
+    </script>
+{% endblock %}

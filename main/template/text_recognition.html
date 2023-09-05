@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+<section>
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <input type="file" name="text_file"/> 
+        <input type="submit" value="Submit"/>
+    </form>
+</section>
+<script>
+    document.getElementById("su-email").addEventListener("input", function(e){
+        e.preventDefault();
+    
+        $.ajax({
+            type:'POST',
+            url:'/email',
+            data:{
+                email:$('#su-email').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data){
+                document.getElementById('email_validate').innerHTML = data;
+            }
+        });
+    });
+
+    document.getElementById("su-username").addEventListener("input", function(e){
+        e.preventDefault();
+    
+        $.ajax({
+            type:'POST',
+            url:'/username',
+            data:{
+                name:$('#su-username').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data){
+                document.getElementById('username_validate').innerHTML = data;
+            }
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}

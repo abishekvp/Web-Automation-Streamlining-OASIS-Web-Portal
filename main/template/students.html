@@ -1,0 +1,58 @@
+{}
+    <section class="section-profile">
+        {% if students_data %}
+        <table>
+            <thead>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <tr class="seach-bar">
+                        <td id="block_1"></td>
+                        <td id="input"><input type="text" name="search" id="search" placeholder="Search for a Student"></td>
+                        <td id="search-icon"><button type="submit"><i class="bi bi-search"></i></button></td>
+                    </tr>
+                </form>
+                <tr>
+                    <th id="s_no">S No.</th>
+                    <th id="name">Name</th>
+                    <th id="roll_no">Roll No.</th>
+                    <th id="cgpa">CGPA</th> 
+                </tr>
+            </thead>
+            <tbody class="full_data">
+                {% for student in students_data %}
+                <tr>
+                    <td id="s_no s_no_d">{{ student.i_no }}</td>
+                    <td id="name name_d">{{ student.name }}</td>
+                    <td id="roll_no roll_no_d">{{ student.roll_no }}</td>
+                    <td id="cgpa"><input type="number" class="cgpa" name="cgpa" id="{{student.roll_no}}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        <input type="submit" value="Submit">
+    </section>
+    <script>
+        document.getElementById("search").addEventListener("input", function(e){
+            e.preventDefault();
+        
+            $.ajax({
+                type:'POST',
+                url:'/student_list',
+                data:{
+                    search:$('#search').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function(data){
+                    let dic = {};
+                    data=Object.values(data);
+                    for(let i = 0; i < data.length; i++){
+                        render_template('students.html', students_data=data[i]);
+                        console.log(data[i][0].name)
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

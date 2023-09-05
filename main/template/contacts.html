@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+{% if user.is_authenticated %}
+{% block content %}
+    <section class="section-contacts">
+        <div class="contacts">
+            {% for profile,j in profiles.items %}
+            <div class="profile">
+                <a aria-label="Chat on WhatsApp" href="https://wa.me/+919792205279">
+                    <i class="bi bi-person-bounding-box"></i>
+                    <span>{{ profile }}</span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>  
+    </section>
+    <section>
+    {% block chat %}
+    {% endblock %}
+    </section>
+{% endblock %}
+{% endif %}

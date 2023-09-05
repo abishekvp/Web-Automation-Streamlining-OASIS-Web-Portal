@@ -1,0 +1,9 @@
+{% extends 'contact.html' %}
+{% load static %}
+{% if user.is_authenticated %}
+{% block chat %}
+<section class="section-profile">
+    <h3>{{ request.user.sender }}</h3>
+</section>
+{% endif %}
+{% endblock %}

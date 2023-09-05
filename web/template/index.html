@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="How to change the address bar color in Chrome, Firefox, Opera, Safari" />
+    <meta property="og:description" content="How to change the address bar color in Chrome, Firefox, Opera, Safari" />
+    <meta property="og:url" content="http://webdevelopmentscripts.com/64-how-to-change-the-address-bar-color-in-chrome-firefox-opera-safari" />
+    <meta property="og:image" content="http://webdevelopmentscripts.com/post-images/685b-change-browser-address-bar-color-chrome-android.jpeg" />
+
+    <title>Batch 8</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+<body>
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <section class="headings">
+        <h2>STREAMLINING STUDENTS ACADEMIC DATA ENTRY</h2>
+        <a href="signout"><input type="button" class="btn btn-primary signout" value="SignOut"></a>
+    </section>
+    <section class="row content">
+        <nav class="col-2">
+            <ul>
+                <a href="profile"><button class="btn btn-primary nav-button">Profile</button></a>
+                <a href="data_feed"><button class="btn btn-primary nav-button">Feed Data</button></a>
+                <a href="text_recognition"><button class="btn btn-primary nav-button">Text Recognition</button></a>
+                <a href="mark_entry"><button class="btn btn-primary nav-button" style="opacity: 0;">Students</button></a>
+                <a href="contacts"><button class="btn btn-primary nav-button" style="opacity: 0;">Contacts</button></a>
+            </ul>
+        </nav>
+        <section class="col-10 extended-content">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </section>
+    {% else %}
+    <section style="margin: 0 0 0 1%;">
+        {% block sign %}
+        {% endblock %}
+    </section>
+    {% endif %}
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

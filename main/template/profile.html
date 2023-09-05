@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+<section class="section-profile">
+    {% if user_data %}
+    <div class="profile col-5">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <span id="username">: {{ user_data.username }}</span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <span id="email">: {{ user_data.email }}</span>
+        </div>
+        <div class="form-group">
+            <label for="contact">Contact</label>
+            <span id="contact">: {{ user_data.contact }}</span>
+        </div>
+        <a href="edit_profile"><input type="button" class="btn btn-primary" value="Edit"></a>
+    </div>
+    {% endif %}
+</section>
+{% endif %}
+{% endblock %}

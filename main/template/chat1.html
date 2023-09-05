@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<div class="justify-content-center">
+    <form method="post" id="post-form">
+        {% csrf_token %}
+        <div class="chatbox">
+            <p id="mesgs"></p>
+            <input type="text" name="text_area" id="text_area">
+            <input type="submit" value="Send" name="send" id="send">
+        </div>
+    </form>
+</div>
+
+{% endblock %}

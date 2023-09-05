@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+<section class="section-edi-profile">
+    <form method="post" class="edit-profile col-5">
+    {% csrf_token %}
+    {% if user_data %}
+        <div class="input-group">
+            <label for="username">Username</label>
+            <span id="username">: <input type="text" name="su-username" id="su-username" required></span>
+            <span class="alert_message" id="username_validate" style="padding: 0 0 0 2%;"></span>
+            <!-- <span id="username">: {{ user_data.username }}</span> -->
+        </div>
+        <div class="input-group">
+            <label for="email">Email</label>
+            <!-- <span id="email">: {{ user_data.email }}</span> -->
+            <span id="email">: <input type="email" name="su-email" id="su-email" required></span>
+            <span class="alert_message" id="email_validate" style="padding: 0 0 0 2%;"></span>
+        </div>
+        <div class="input-group">
+            <label for="contact">Contact</label>
+            <span id="contact">: <input type="tel" name="contact" id="contact" required></span>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <span id="password">: <input type="password" name="password" id="password" required></span>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Update">
+    {% endif %}
+    </form>
+</section>
+<script>
+    document.getElementById("su-email").addEventListener("input", function(e){
+        e.preventDefault();
+    
+        $.ajax({
+            type:'POST',
+            url:'/email',
+            data:{
+                email:$('#su-email').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data){
+                document.getElementById('email_validate').innerHTML = data;
+            }
+        });
+    });
+
+    document.getElementById("su-username").addEventListener("input", function(e){
+        e.preventDefault();
+    
+        $.ajax({
+            type:'POST',
+            url:'/username',
+            data:{
+                name:$('#su-username').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data){
+                document.getElementById('username_validate').innerHTML = data;
+            }
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}

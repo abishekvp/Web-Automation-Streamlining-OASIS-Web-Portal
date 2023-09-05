@@ -1,0 +1,259 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+*{
+    transition: 0.3s;
+}
+
+body{
+    overflow-x: hidden;
+    background-color: #28292a;
+    color: #04cc5c;
+}
+
+.signout{
+    position: absolute;
+    right: 2%;
+    top: 2%;
+}
+
+section{
+    margin: 5% 0 0 0;
+    width: 100%;
+}
+
+section h2{
+    color: #0bd45c;
+}
+
+section p{
+    margin: 2% 0 0 0;
+}
+
+section .form-group input{
+    color: #04cc5c;
+    border-radius: 25px;
+    background-color: #28292a;
+    border-color: #0bd45c;
+}
+
+section form{
+    text-align: center;
+}
+
+section .form-group input:focus{
+    color: #0bd45c;
+    border-radius: 25px;
+    border-color: #0bd45c;
+    border-color: -internal-light-dark(#0bd45c, #0bd45c );
+    box-shadow: 0 0 3px #0bd45c;
+    --bs-primary-border-subtle:#0bd45c;
+    background-color: #28292a;
+}
+
+section .btn{
+    margin: 2% 0 0 0    ;
+    background-color: #28292a;
+    border-color: #0bd45c;
+    color: #0bd45c;
+}
+
+section .btn:focus{
+    background-color: #0bd45c;
+    border-color: #0bd45c;
+    box-shadow: 0 0 3px #0bd45c;
+}
+
+section .btn:hover{
+    background-color: #0bd45c;
+    border-color: #0bd45c;
+    box-shadow: 0 0 3px #0bd45c;
+}
+
+section .btn:active{
+    background-color: #0bd45c;
+    border-color: #0bd45c;
+    box-shadow: 0 0 3px #0bd45c;
+}
+
+section form p a{
+    font-weight: 700;
+    color: #04cc5c;
+    border-bottom: 1px solid #04cc5c;
+}
+
+section form p a:hover{
+    color: #04cc5c;
+}
+
+section form p button:hover{
+    box-shadow: 0 0 3px #04cc5c;
+}
+
+#su-re_password:disabled{
+    color: #04cc5c;
+    border-radius: 25px;
+    background-color: #28292a;
+    border-color: #0bd45c;
+}
+
+.messages{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 0;
+}
+
+.messages p{
+    color: red;
+    text-align: center;
+    padding: 2% 0 2% 0;
+}
+
+.headings{
+    text-align: center;
+    margin: 5% 0 0 0;
+}
+
+.content{
+    display: flex;
+}
+
+.extended-content{
+    margin: -10% 0 0 30%;
+}
+
+.section-profile div div label{
+    min-width: 14.1%;
+}
+
+.section-profile div div span{
+    padding: 0 0 0 1%;
+}
+
+.section-edi-profile .edit-profile{
+    text-align: left;
+}
+
+.section-edi-profile .input-group label{
+    min-width: 23%;
+}
+
+.section-edi-profile .input-group input{
+    border: none;
+    background-color: #28292a;
+    color: #04cc5c;
+}
+
+.section-edi-profile .input-group input:focus{
+    border: none;
+}
+
+.alert_message{
+    color: red;
+}
+
+section nav ul a .nav-button{
+    min-width: 100%;
+}
+
+.section-contacts{
+    text-align: left;
+}
+
+.section-contacts .contacts a{
+    margin: 1% 0 0 0;
+    padding: 0.5% 2% 0.5% 2%;
+    min-width: 50%;
+    border: 1px solid #04cc5c;
+    border-radius: 5px 5px 5px 15px
+}
+
+.section-contacts .contacts a{
+    color: #04cc5c;
+    font-size: 25px;
+}
+
+table{
+    width: 40%;
+    margin: 0 50% 0 10%;
+    justify-content: space-around;
+}
+
+table tr td{
+    border: 1px solid #04cc5c;
+}
+
+thead{
+    font-weight: 700;
+}
+
+#s_no{
+    text-align: center;
+    width: 205;
+}
+
+thead tr #name{
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    padding: 0 0 0 5%;
+}
+
+thead tr #roll_no{
+    text-align: center;
+    width: 50%;
+}
+thead tr #cgpa{
+    text-align: center;
+    width: 10%;
+}
+
+.seach-bar td input{
+    border: none;
+    width: 100%;
+    color: #04cc5c;
+    background-color: #28292a;
+}
+
+table thead .seach-bar td input:focus{
+    outline-width: 0;
+}
+
+table thead .seach-bar #input{
+    border-right: 1px solid #28292a;
+}
+
+#search-icon{
+    text-align: left;
+    padding: 0 0 0 5%;
+    border-left: 1px solid #28292a;
+    background-color:#28292a;
+}
+
+#search-icon button{
+    background-color: #28292a;
+    color: #04cc5c;
+    border: none;
+    transition: 0.2s;
+}
+
+#search-icon button:hover{
+    outline-width: 0;
+    background-color: #04cc5c;
+    color: white;
+    transition: 0.2s;
+}
+
+#block_1{
+    border-right: 1px solid #28292a;
+}
+
+.cgpa{
+    border:none;
+    padding-left: 5%;
+    background-color: transparent;
+    color: #04cc5c;
+}
+.cgpa input{
+    width: 10%;
+}

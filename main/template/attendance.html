@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% if user.is_authenticated %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <th>
+                <tr>
+                    <td>S.No</td>
+                    <td>Name</td>
+                    <td>Register No.</td>
+                    <td>CGPA</td>
+                </tr>
+            </th>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.register_no }}</td>
+                    <td>{{ student.cgpa }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p id="response"></p>
+        <input type="text" name="message_input" id="message_input">
+        <button type="submit">Send</button>
+    </form>
+    {% endif %}
+{% endblock %}

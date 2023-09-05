@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+<section class="section-edi-profile">
+    <form method="POST" enctype="multipart/form-data" class="edit-profile col-5">
+    {% csrf_token %}
+        <div class="input-group">
+            <label for="username">Web Portal Username : </label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Web Portal Password : </label>
+            <input type="text" name="password" id="password" required>
+        </div>
+        <!-- <div class="input-group">
+            <label for="wpurl">Web Portal URL : </label>
+            <input type="text" name="wpurl" id="wpurl" required>
+        </div> -->
+        <div class="input-group">
+            <label for="excel">Excel Sheet</label>
+            <input type="file" name="excel" id="excel" required>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Feed">
+    </form>
+</section>
+<script>
+    document.getElementById("su-email").addEventListener("input", function(e){
+        e.preventDefault();
+    
+        $.ajax({
+            type:'POST',
+            url:'/email',
+            data:{
+                email:$('#su-email').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data){
+                document.getElementById('email_validate').innerHTML = data;
+            }
+        });
+    });
+
+    document.getElementById("su-username").addEventListener("input", function(e){
+        e.preventDefault();
+    
+        $.ajax({
+            type:'POST',
+            url:'/username',
+            data:{
+                name:$('#su-username').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data){
+                document.getElementById('username_validate').innerHTML = data;
+            }
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}
