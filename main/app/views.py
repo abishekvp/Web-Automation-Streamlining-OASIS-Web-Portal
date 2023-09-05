@@ -37,9 +37,9 @@ def data_feed(request):
             attend_per=list(data["Attendance Percentage"])
             
             try:
-                chrome_options = Options()
-                driver = webdriver.Chrome(options= chrome_options)
-                # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+                # chrome_options = Options()
+                # driver = webdriver.Chrome(options= chrome_options)
+                driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
                 driver.get('http://127.0.0.1:2000')
                 signin = driver.find_element(By.XPATH,'//*[@id="email"]')
                 signin.send_keys(id)

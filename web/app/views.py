@@ -27,30 +27,21 @@ def mark_entry(request):
         data = dict(request.POST)
     return render(request,'mark_entry.html',{'students_data':students_data.find()})
 
+
 def signin(request):
     try:
         if request.user.is_authenticated:
             return redirect("index")
         elif request.method == 'POST':
-            p_key=request.POST.get("email")
+            email=request.POST.get("email")
             password=request.POST.get("password")
-            try:
-                user = authenticate(request, username=p_key, password=password)
-                if user is not None:
-                    login(request, user)
-                    return redirect('index')
-                else:messages.info(request, 'invalid credentials')
-            except:messages.info(request, 'user not found')
-            try:
-                user = authenticate(request, email=p_key, password=password)
-                if user is not None:
-                    login(request, user)
-                    return redirect('index')
-                else:messages.info(request, 'invalid credentials')
-                    
-            except:messages.info(request, 'user not found')
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+            else:messages.info(request, 'invalid credentials')                  
     except:
-        return redirect("index")
+        messages.info(request, 'Something went wrong')
     return render(request,'signin.html')
 
 def signup(request):
