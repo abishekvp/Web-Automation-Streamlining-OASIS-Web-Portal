@@ -3,10 +3,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+import pandas as pd
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-client = MongoClient("mongodb://localhost:27017", server_api=ServerApi('1'))
+client = MongoClient("mongodb+srv://abishekarmy:N1bogmsI16E3pyxM@prime.hwwmcie.mongodb.net/?retryWrites=true&w=majority&appName=PRIME", server_api=ServerApi('1'))
 
 db_user = client.django.user
 stu_data = client.django.students_data
@@ -60,10 +61,38 @@ def signup(request):
                     if user is not None:
                         login(request, user)
                         return redirect('index')
-    except:messages.info(request, 'Something wen wrong')
+    except Exception as e:messages.info(request, f'Something went wrong: {e}')
     return render(request,'signup.html')
 
 def signout(request):
     logout(request)
     return redirect('signin')
 
+
+@login_required(login_url='signin')
+def data_feed(request):
+    if(request.user.is_authenticated):
+        if request.method == "POST":
+            excel = request.FILES["excel"]
+            data = pd.read_excel(excel)
+            roll_no=list(data['Roll No'])
+            name=list(data['Name'])
+            c = 1
+            for i in range(len(roll_no)):
+                # students_data.insert_one({
+                #     "i_no": c,
+                #     "roll_no": roll_no[i],
+                #     "name": name[i],
+                # })
+                c += 1
+    return render(request, 'feed_data.html')
+
+def delete(request):
+    print("Del")
+    try:
+        docs = students_data.find()
+        for i in docs:
+            print(i)
+    except Exception as e:
+        print(e)
+    return redirect('index')
